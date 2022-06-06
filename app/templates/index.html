@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Ninestars Bootstrap Template - Index</title>
+  <title>Sistem Peramalan Penjualan</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,7 +38,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="/"><span>Ninestars</span></a></h1>
+        <h1 class="text-light"><a href="/"><span>Instiki</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -82,10 +82,10 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Bettter digital experience with Ninestars</h1>
-          <h2>We are team of talented designers making websites with Bootstrap</h2>
+          <h1>Selamat Datang di Sistem Peramalan Penjualan Barang</h1>
+          <h2>Tekan tombol dibawah untuk meramal penjualan bulan berikutnya</h2>
           <div>
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="#contact" class="btn-get-started">Ramal Penjualan</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
@@ -98,49 +98,80 @@
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
 
-        <div class="row justify-content-between">
-          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
-            <img src="{{ url_for('static', filename='assets/img/about-img.svg') }}" class="img-fluid" alt=""
-              data-aos="zoom-in">
-          </div>
-          <div class="col-lg-6 pt-5 pt-lg-0">
-            <h3 data-aos="fade-up">Voluptatem dignissimos provident quasi</h3>
-            <p data-aos="fade-up" data-aos-delay="100">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Duis aute irure dolor in reprehenderit
-            </p>
-            <div class="row">
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <i class="bx bx-receipt"></i>
-                <h4>Corporis voluptates sit</h4>
-                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+        <div class="section-title">
+          <p>Peramalan Penjualan</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <form method="post" enctype="multipart/form-data" role="form" class="php-email-form">
+              <div class="form-group mt-3">
+                <label for="formFile" class="form-label">Silahkan upload riwayat penjualan produk yang ingin diramal
+                  (*12
+                  bulan kebelakang)</label>
+                <input class="form-control" type="file" name="file" id="formFile">
               </div>
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <i class="bx bx-cube-alt"></i>
-                <h4>Ullamco laboris nisi</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-              </div>
-            </div>
+              <div class="text-center mt-2"><button type="submit">Ramal Penjualan</button></div>
+            </form>
           </div>
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section><!-- End Contact Us Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</h2>
-          <p>Check out the great services we offer</p>
+          <h2>Hasil</h2>
+          <p>Peramalan</p>
+        </div>
+        <!-- <select name="aa" id="aa">
+          {% if prediction %}
+          {% for key,value in prediction.iterrows() %}
+          <option value="{{ value['id'] }}">{{ value['barcode'] }}</option>
+          {% endfor %}
+          {% else %}
+          <option value="tes">tes</option>
+          {% endif %}
+        </select> -->
+
+        <div class="contact">
+          <div class="row">
+            <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+              <form method="post" enctype="multipart/form-data" role="form" class="php-email-form">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      {% for col in column_names %}
+                      <th>{{col}}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in row_data %}
+                    <tr>
+                      {% for col, row_ in zip(column_names, row) %}
+                      <td>{{row_}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+              </form>
+            </div>
+          </div>
         </div>
 
-        <div class="row">
+
+        <!-- <img src="{{ url_for('static', filename='images/tes.png') }}" class="img-fluid animated" alt=""> -->
+        <!-- <div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
@@ -177,34 +208,43 @@
             </div>
           </div>
 
-        </div>
+        </div> -->
 
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= Contact Us Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
+    <!-- ======= About Section ======= -->
+    <!-- <section id="about" class="about">
+      <div class="container">
 
-        <div class="section-title">
-          <p>Peramalan Penjualan</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <form method="post" enctype="multipart/form-data" role="form" class="php-email-form">
-              <div class="form-group mt-3">
-                <label for="formFile" class="form-label">Silahkan input riwayat penjualan produk yang ingin diramal (*12
-                  bulan kebelakang)</label>
-                <input class="form-control" type="file" name="file" id="formFile">
+        <div class="row justify-content-between">
+          <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+            <img src="{{ url_for('static', filename='assets/img/about-img.svg') }}" class="img-fluid" alt=""
+              data-aos="zoom-in">
+          </div>
+          <div class="col-lg-6 pt-5 pt-lg-0">
+            <h3 data-aos="fade-up">Voluptatem dignissimos provident quasi</h3>
+            <p data-aos="fade-up" data-aos-delay="100">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Duis aute irure dolor in reprehenderit
+            </p>
+            <div class="row">
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-receipt"></i>
+                <h4>Corporis voluptates sit</h4>
+                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
               </div>
-              <div class="text-center mt-2"><button type="submit">Ramal Penjualan</button></div>
-            </form>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <i class="bx bx-cube-alt"></i>
+                <h4>Ullamco laboris nisi</h4>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
-    </section><!-- End Contact Us Section -->
+    </section> -->
 
   </main><!-- End #main -->
 
@@ -213,14 +253,14 @@
 
     <div class="container py-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>Ninestars</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>INSTIKI</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/ninestars-free-bootstrap-3-theme-for-creative/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
       </div>
     </div>
   </footer><!-- End Footer -->
