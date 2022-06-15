@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 # load model from single file
-gru_model = load_model('gru_model.h5')
+gru_model = load_model('gru_model-bs32_hn64_month35.h5')
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -21,8 +21,8 @@ def index():
         # drop unnecessary column
         X = df_pred.drop_duplicates(subset=['barcode'])
         X.fillna(0, inplace=True)
-        X.drop(['barcode'], axis=1, inplace=True)
-        # X = df_pred.drop(['barcode'], axis=1, inplace=True)
+        X.drop(['barcode', 'namabarang'], axis=1, inplace=True)
+
         # reshape the predict dataset
         X_reshaped = X.values.reshape((X.shape[0], X.shape[1], 1))
 
@@ -30,16 +30,14 @@ def index():
         model_pred = gru_model.predict(X_reshaped)
 
         # get back the barcode to pairing the prediction
-        barcode_pred = df_pred[['barcode']]
-        prediction = pd.DataFrame(barcode_pred['barcode'], columns=['barcode'])
+        barcode_pred = df_pred[['barcode', 'namabarang']]
+        prediction = pd.DataFrame(barcode_pred[['barcode', 'namabarang']], columns=[
+                                  'barcode', 'namabarang'])
         prediction['prediction_next_month'] = pd.DataFrame(model_pred)
 
-        return prediction.to_html()
-
-        # X = pd.read_csv(csv_file, parse_dates=['tgl'])
-        # X = X.drop(['notxn', 'nonota', 'kodekategori', 'namabarang', 'hargajual', 'hargabeli', 'diskon', 'hargaafterdiskon', 'subtotal', 'kodeop', 'isbkp', 'kodecustomer',
-        #            'iddistributor', 'idpromo', 'iddivisi', 'jenis', 'kategori', 'kodedepartemen', 'departemen', 'namaop', 'kodedivisibarang', 'divisibarang'], axis=1)
-        # return render_template("index.html", data=X)
+        # return prediction.to_html()
+        print(prediction)
+        return render_template('index.html', column_names=prediction.columns.values, row_data=list(prediction.values.tolist()), zip=zip)
 
 
 if __name__ == "__main__":
